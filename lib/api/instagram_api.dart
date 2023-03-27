@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:instagram_app/models/insta_responsive.dart';
+import 'package:instagram_app/models/insta_response.dart';
 
 class InstagramApi {
   InstagramApi({
@@ -27,19 +27,16 @@ class InstagramApi {
   final String apiKey;
 
   Future<UserName?> getUser(String username) async {
-    
-    Map<String, dynamic> queryParam ={'username': username};
-    final response = await dio.get('/user/details-by-username/', queryParameters: queryParam);
+    Map<String, dynamic> queryParam = {'username': username};
+    final response = await dio.get('/user/details-by-username/',
+        queryParameters: queryParam);
 
     UserName? res;
 
     if (response.data != null) {
-      
-        res = userNameFromJson(response.data);
-
+      res = userNameFromJson(response.data);
     }
-        
+
     return res;
   }
-
 }

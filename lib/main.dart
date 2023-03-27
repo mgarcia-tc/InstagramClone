@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_app/page/home_page.dart';
+import 'package:instagram_app/api/dio.dart';
+import 'package:instagram_app/providers/busqueda_provider.dart';
+import 'package:instagram_app/router/app_routes.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  Api.configureDio();
+  runApp(MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => BusquedaProvider())],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Instagram',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(),
+      initialRoute: AppRoutes.initialRoute,
+      routes: AppRoutes.routes,
     );
   }
 }
-

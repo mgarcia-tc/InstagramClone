@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final arreglo = [
@@ -48,6 +53,54 @@ class HomePage extends StatelessWidget {
     ];
 
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        child: SizedBox(
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.home_filled, color: Colors.black),
+                  iconSize: 35),
+              IconButton(
+                onPressed: () =>
+                    Navigator.pushReplacementNamed(context, "search"),
+                icon: const Icon(Icons.search_rounded, color: Colors.black),
+                iconSize: 35,
+              ),
+              Image.asset(
+                "assets/mas.png",
+                height: 28,
+                width: 28,
+              ),
+              Image.asset("assets/video.png", height: 29, width: 29),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 21,
+                    child: Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            "https://i.pinimg.com/736x/1a/18/f3/1a18f35661f1db7163be608facdd7813.jpg"),
+                        radius: 20,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.red,
+                    width: 2,
+                    height: 2,
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
       backgroundColor: Colors.white,
       appBar: _appBarHome(),
       body: SingleChildScrollView(
@@ -58,7 +111,7 @@ class HomePage extends StatelessWidget {
               color: Color.fromARGB(255, 82, 82, 82),
               thickness: 0.5,
             ),
-            Post(),
+            const Post(),
           ],
         ),
       ),
@@ -85,7 +138,7 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.favorite_border, color: Colors.black),
             iconSize: 33,
           ),
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
           Image.asset(
             "assets/messenger.png",
             height: 28,
@@ -181,13 +234,13 @@ class Post extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: 700,
       child: ListView.builder(
           itemCount: 50,
           itemBuilder: ((context, index) {
-            return CrearPost();
+            return const CrearPost();
           })),
     );
   }
@@ -202,10 +255,8 @@ class CrearPost extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const HeaderPost(),
-        Container(
-          child: Image.network(
-              "https://scontent-atl3-1.cdninstagram.com/v/t51.2885-15/326762567_892605942083402_8223450535531935603_n.jpg?stp=dst-jpg_e35_s1080x1080&_nc_ht=scontent-atl3-1.cdninstagram.com&_nc_cat=1&_nc_ohc=6rXMMGg4BK0AX8R23ZN&edm=APU89FABAAAA&ccb=7-5&oh=00_AfB-_i5136GxUspz8XRnpGGnz3Xp4oqo-dq5XHIsG9QJBQ&oe=6421C2A5&_nc_sid=86f79a"),
-        ),
+        Image.network(
+            "https://scontent-atl3-1.cdninstagram.com/v/t51.2885-15/326762567_892605942083402_8223450535531935603_n.jpg?stp=dst-jpg_e35_s1080x1080&_nc_ht=scontent-atl3-1.cdninstagram.com&_nc_cat=1&_nc_ohc=6rXMMGg4BK0AX8R23ZN&edm=APU89FABAAAA&ccb=7-5&oh=00_AfB-_i5136GxUspz8XRnpGGnz3Xp4oqo-dq5XHIsG9QJBQ&oe=6421C2A5&_nc_sid=86f79a"),
         Row(
           children: [
             IconButton(
@@ -246,7 +297,10 @@ class CrearPost extends StatelessWidget {
               RichText(
                 text: const TextSpan(
                   text: 'tammy.parra',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.black),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                      color: Colors.black),
                   children: <TextSpan>[
                     TextSpan(
                         text:
@@ -256,20 +310,33 @@ class CrearPost extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 5,),
-              const Text("ver los 157 comentarios", 
-              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15, color: Colors.grey),),
-              const SizedBox(height: 5,),
+              const SizedBox(
+                height: 5,
+              ),
+              const Text(
+                "ver los 157 comentarios",
+                style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 15,
+                    color: Colors.grey),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
               RichText(
                 text: const TextSpan(
                   text: 'Hace 37 minutos',
-                  style: TextStyle(fontWeight: FontWeight.normal, fontSize: 10, color: Colors.grey),
+                  style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 10,
+                      color: Colors.grey),
                   children: <TextSpan>[
                     TextSpan(
-                        text:
-                            ' ° Ver traducción',
+                        text: ' ° Ver traducción',
                         style: TextStyle(
-                            fontWeight: FontWeight.normal, fontSize: 10, color: Colors.black)),
+                            fontWeight: FontWeight.normal,
+                            fontSize: 10,
+                            color: Colors.black)),
                   ],
                 ),
               ),
